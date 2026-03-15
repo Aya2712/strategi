@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bâtiment C - UFR DEG</title>
+
+<style>
+
+/* same CSS as B page */
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial;}
+
+body{
+background:linear-gradient(135deg,#eef2ff,#f8fafc,#fff7ed);
+color:#1e293b;
+}
+
+.container{max-width:1100px;margin:auto;padding:20px;}
+
+header{background:white;box-shadow:0 10px 30px rgba(0,0,0,.05);}
+
+.nav{display:flex;justify-content:space-between;align-items:center;}
+
+.logo{display:flex;align-items:center;gap:10px;font-weight:600;}
+
+.logo img{width:45px;border-radius:8px;}
+
+.nav-links a{text-decoration:none;margin-left:20px;color:#334155;font-weight:500;}
+
+.page-hero{text-align:center;padding:60px 20px;}
+
+.page-hero h1{font-size:44px;margin-bottom:10px;}
+
+.page-hero p{color:#64748b;}
+
+.video-section{max-width:900px;margin:auto;padding:20px;}
+
+.panel{background:white;padding:35px;border-radius:30px;box-shadow:0 25px 60px rgba(0,0,0,.12);}
+
+.bar{display:flex;flex-wrap:wrap;gap:15px;align-items:center;margin-bottom:25px;}
+
+label{font-weight:600;}
+
+select{padding:12px;border-radius:12px;border:1px solid #e2e8f0;background:#f8fafc;}
+
+button{background:linear-gradient(135deg,#2563eb,#3b82f6);color:white;border:none;padding:12px 22px;border-radius:30px;cursor:pointer;font-weight:600;}
+
+video{width:100%;border-radius:20px;box-shadow:0 20px 50px rgba(0,0,0,.25);}
+
+.back{text-align:center;margin-top:30px;}
+
+.back a{text-decoration:none;padding:12px 20px;border-radius:30px;border:2px solid #2563eb;color:#2563eb;font-weight:600;}
+
+footer{margin-top:80px;padding:40px;background:#1e293b;color:white;text-align:center;}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="container nav">
+
+<div class="logo">
+<img src="campus.jpg">
+<span>UFR DEG</span>
+</div>
+
+<div class="nav-links">
+<a href="acceuil.html">Accueil</a>
+<a href="batiments.html">Bâtiments</a>
+</div>
+
+</div>
+</header>
+
+<section class="page-hero">
+<h1>📚 Bâtiment C</h1>
+<p>Sélectionnez votre point de départ et votre salle.</p>
+</section>
+
+<section class="video-section">
+
+<div class="panel">
+
+<div class="bar">
+
+<label>Départ</label>
+<select id="start"></select>
+
+<label>Arrivée</label>
+<select id="end"></select>
+
+<button id="play">▶ Lire</button>
+<button id="stop">⏹ Stop</button>
+
+</div>
+
+<video id="video" controls></video>
+
+</div>
+
+<div class="back">
+<a href="batiments.html">← Choisir un autre bâtiment</a>
+</div>
+
+</section>
+
+<footer>
+© Université d'Orléans — UFR DEG
+</footer>
+
+<script>
+
+const VIDEO_FORWARD="./batC.mp4";
+const VIDEO_BACKWARD="./batCretour.mov";
+
+const timestampsForward={
+BatimentB:0,
+C001:29,
+C002:20,
+C003:14,
+C004:12,
+C005:23,
+C006:29
+};
+
+const timestampsBackward={
+C006:4,
+C005:8,
+C004:12,
+C003:15,
+C002:8,
+C001:4,
+BatimentB:25
+};
+
+const rooms=Object.keys(timestampsForward);
+
+const start=document.getElementById("start");
+const end=document.getElementById("end");
+const video=document.getElementById("video");
+
+rooms.forEach(r=>{
+start.innerHTML+=`<option>${r}</option>`;
+end.innerHTML+=`<option>${r}</option>`;
+});
+
+function playSegment(s,e){
+
+let f1=timestampsForward[s];
+let f2=timestampsForward[e];
+
+let b1=timestampsBackward[s];
+let b2=timestampsBackward[e];
+
+let file,from,to;
+
+if(f1<f2){
+file=VIDEO_FORWARD;
+from=f1;
+to=f2;
+}
+else{
+file=VIDEO_BACKWARD;
+from=b1;
+to=b2;
+}
+
+video.src=file;
+
+video.onloadedmetadata=()=>{
+video.currentTime=from;
+video.play();
+
+let timer=setInterval(()=>{
+if(video.currentTime>=to){
+video.pause();
+clearInterval(timer);
+}
+},150);
+};
+
+}
+
+play.onclick=()=>playSegment(start.value,end.value);
+stop.onclick=()=>video.pause();
+
+</script>
+
+</body>
+</html>
