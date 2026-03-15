@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UFR DEG — Université d'Orléans</title>
+<style>
+/* ===== RESET ===== */
+* { margin:0; padding:0; box-sizing:border-box; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; }
+
+/* ===== BODY ===== */
+body{
+  background:#f8fafc;
+  color:#1e293b;
+  line-height:1.6;
+  overflow-x:hidden;
+}
+
+/* ===== CONTAINER ===== */
+.container{
+  max-width:1200px;
+  margin:0 auto;
+  padding:0 20px;
+}
+
+/* ===== NAVBAR ===== */
+header{
+  background:white;
+  box-shadow:0 5px 20px rgba(0,0,0,.05);
+  position:sticky;
+  top:0;
+  z-index:100;
+}
+
+.nav{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:15px 0;
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-weight:600;
+  font-size:18px;
+}
+
+.logo img{
+  width:50px;
+  border-radius:8px;
+}
+
+.nav-links{
+  display:flex;
+  gap:25px;
+  flex-wrap:wrap;
+}
+
+.nav-links a{
+  text-decoration:none;
+  color:#334155;
+  font-weight:500;
+  padding:8px 15px;
+  border-radius:20px;
+  transition:.3s;
+}
+
+.nav-links a:hover{
+  color:white;
+  background: #2563eb;
+}
+
+/* ===== WELCOME ===== */
+.welcome{
+  margin-top:25px;
+  background: linear-gradient(135deg,#fff7ed,#ffffff);
+  border-radius:40px;
+  padding:20px 25px;
+  display:flex;
+  align-items:center;
+  gap:20px;
+  box-shadow:0 10px 30px rgba(0,0,0,.05);
+  border:1px solid #fde68a;
+}
+
+.welcome span{
+  font-size:40px;
+}
+
+/* ===== HERO ===== */
+.hero{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  align-items:center;
+  gap:60px;
+  margin-top:50px;
+}
+
+.hero-left{
+  position:relative;
+}
+
+.badge{
+  display:inline-block;
+  background:#2563eb;
+  color:white;
+  padding:10px 20px;
+  border-radius:50px;
+  font-size:14px;
+  font-weight:600;
+  margin-bottom:20px;
+  position:absolute;
+  top:-10px;
+  left:0;
+  animation:floatBadge 3s ease-in-out infinite;
+}
+
+@keyframes floatBadge{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-8px);}
+}
+
+.hero h1{
+  font-size:clamp(2.5rem,6vw,4rem);
+  margin-bottom:20px;
+  line-height:1.1;
+}
+
+.hero p{
+  font-size:18px;
+  color:#475569;
+  margin-bottom:30px;
+  max-width:500px;
+}
+
+.buttons{
+  display:flex;
+  gap:20px;
+  flex-wrap:wrap;
+}
+
+.btn{
+  padding:14px 26px;
+  border-radius:50px;
+  text-decoration:none;
+  font-weight:600;
+  transition:.3s;
+}
+
+.btn-primary{
+  background:#2563eb;
+  color:white;
+  box-shadow:0 10px 20px rgba(37,99,235,.3);
+}
+
+.btn-primary:hover{
+  background:#1d4ed8;
+  transform:translateY(-2px);
+}
+
+.btn-secondary{
+  background:rgba(37,99,235,0.1);
+  color:#2563eb;
+  border:2px solid #2563eb;
+}
+
+.btn-secondary:hover{
+  background:rgba(37,99,235,0.2);
+}
+
+/* HERO IMAGE */
+.hero-image{
+  position:relative;
+  border-radius:25px;
+  overflow:hidden;
+  height:550px;
+  box-shadow:0 30px 60px rgba(0,0,0,.15);
+  animation:floatImage 6s ease-in-out infinite;
+}
+
+.hero-image img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.hero-image::after{
+  content:'';
+  position:absolute;
+  top:0; left:0; right:0; bottom:0;
+  background:rgba(0,78,140,0.2);
+}
+
+@keyframes floatImage{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-10px);}
+}
+
+/* ===== CARDS SECTION ===== */
+.section{
+  margin-top:80px;
+}
+
+.section h2{
+  text-align:center;
+  font-size:32px;
+  margin-bottom:50px;
+}
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:30px;
+}
+
+.card{
+  background:white;
+  padding:25px;
+  border-radius:25px;
+  box-shadow:0 10px 30px rgba(0,0,0,.07);
+  transition:.3s;
+}
+
+.card:hover{
+  transform:translateY(-6px);
+}
+
+.card h3{
+  margin-bottom:10px;
+}
+
+/* ===== TESTIMONIAL ===== */
+.testimonial{
+  background:#fff9f2;
+  border-radius:40px;
+  padding:35px;
+  margin:60px 0;
+  border:2px solid #ffe6d5;
+  box-shadow:0 10px 30px rgba(0,0,0,.05);
+}
+
+.testimonial-quote{
+  font-size:1.3rem;
+  color:#2c3d55;
+  font-style:italic;
+  max-width:80%;
+  margin-bottom:25px;
+  line-height:1.5;
+}
+
+.testimonial-author{
+  display:flex;
+  align-items:center;
+  gap:15px;
+}
+
+.author-avatar{
+  background:#ffb347;
+  width:60px;
+  height:60px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:white;
+  font-weight:600;
+  font-size:1.5rem;
+}
+
+/* ===== FOOTER ===== */
+footer{
+  margin-top:100px;
+  padding:40px;
+  text-align:center;
+  background:#1e293b;
+  color:white;
+  font-weight:500;
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr; gap:40px;}
+  .hero-image{height:400px;}
+}
+
+@media(max-width:500px){
+  .hero-image{height:300px;}
+  .welcome{flex-direction:column; gap:15px; padding:15px;}
+  .hero h1{font-size:2.2rem;}
+}
+
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <div class="logo">
+      <img src="campus.jpg" alt="Logo UFR DEG">
+      <span>UFR DEG - Université d'Orléans</span>
+    </div>
+    <div class="nav-links">
+      <a href="#">Accueil</a>
+      <a href="batiments.html">Salles</a>
+      <a href="#">Contact</a>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <!-- WELCOME -->
+  <div class="welcome">
+    <span>👋</span>
+    <div>
+      <strong>Bienvenue à l'UFR DEG !</strong><br>
+      Nouveau sur le campus ? On te guide en vidéo pour trouver tes salles facilement.
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <div class="badge">🎓 RENTRÉE 2027</div>
+      <h1><span style="font-weight:300;">Bien démarrer à</span> l'UFR DEG</h1>
+      <p>Des itinéraires vidéo simples et chaleureux pour t'aider à te repérer dès ton premier jour. Amphis, salles de TD, bibliothèque, scolarité... on t'emmène partout.</p>
+      <div class="buttons">
+        <a href="#map.html" class="btn btn-primary">🔍 Chercher une salle</a>
+        <a href="#" class="btn btn-secondary">▶ Voir les vidéos</a>
+      </div>
+    </div>
+
+    <div class="hero-image">
+      <img src="campus.jpg" alt="Entrée bâtiment UFR DEG">
+    </div>
+  </section>
+
+  <!-- CARDS -->
+  <section class="section">
+    <h2>On t'accompagne partout</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>🎯 Trouver une salle</h3>
+        <p>Par numéro, par bâtiment ou par prof. L'itinéraire vidéo le plus court jusqu'à ta porte.</p>
+      </div>
+      <div class="card">
+        <h3>🎬 Vidéos pas à pas</h3>
+        <p>Suis le chemin en vidéo depuis l'entrée jusqu'à ta salle. Comme si tu y étais.</p>
+      </div>
+      <div class="card">
+        <h3>💡 Conseils pratiques</h3>
+        <p>Ouverture, plan du campus, services étudiants... tout ce qu'il faut pour tes premiers jours.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIAL -->
+  <div class="testimonial">
+    <div class="testimonial-quote">
+      "La vidéo pour trouver la salle C004 ? 30 secondes et j'y étais. J'aurais tellement aimé ça en L1 !"
+    </div>
+    <div class="testimonial-author">
+      <div class="author-avatar">C</div>
+      <div>
+        <strong>Clara, L2 Éco-Gestion</strong><br>
+        <span style="color:#475569;">étudiante à l'UFR DEG</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  © 2027 — Université d'Orléans, UFR DEG
+</footer>
+
+</body>
+</html>
