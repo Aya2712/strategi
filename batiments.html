@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Bâtiments</title>
+
+<style>
+
+body{
+font-family:Segoe UI;
+background:linear-gradient(135deg,#eef2ff,#f8fafc,#fff7ed);
+}
+
+.container{
+max-width:900px;
+margin:auto;
+padding:60px 30px;
+text-align:center;
+}
+
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
+margin-top:40px;
+}
+
+.card{
+background:white;
+padding:40px;
+border-radius:25px;
+box-shadow:0 20px 50px rgba(0,0,0,.08);
+text-decoration:none;
+font-size:26px;
+font-weight:600;
+color:#1e293b;
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-8px);
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Choisissez votre bâtiment</h1>
+
+<div class="cards">
+
+<a href="batiment-b.html" class="card">
+🏫 Bâtiment B
+</a>
+
+<a href="batiment-c.html" class="card">
+📚 Bâtiment C
+</a>
+
+</div>
+
+</div>
+
+</body>
+</html>
